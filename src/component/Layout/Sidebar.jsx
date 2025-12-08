@@ -26,28 +26,42 @@ export default function Sidebar({ open, onClose }) {
                 <div className="overflow-y-auto h-[calc(100vh-64px)] pr-1">
                     <nav className="space-y-1">
                         {MENU.map(item => (
-                            <NavLink
-                                to={item.path}
-                                key={item.path}
-                                className={({ isActive }) =>
-                                    `flex items-center gap-3 px-6 py-2 text-sm transition 
-            ${isActive
-                                        ? "bg-gray-100 font-semibold text-black mr-2 rounded-tr-[10px] rounded-br-[10px]"
-                                        : "text-gray-600"
-                                    } 
-            hover:bg-gray-100`
-                                }
-                                onClick={onClose}
-                            >
-                                <img
-                                    src={item.icon}
-                                    alt={item.label}
-                                    className="w-[27px] h-[27px] object-contain opacity-80"
-                                />
-                                <span>{item.label}</span>
-                            </NavLink>
+                            <div key={item.path}>
+                                <NavLink
+                                    to={item.path}
+                                    className={({ isActive }) =>
+                                        `flex items-center gap-3 px-6 py-2 text-sm transition 
+          ${isActive ? "bg-gray-100 font-semibold text-black mr-2 rounded-tr-[10px] rounded-br-[10px]" : "text-gray-600"} 
+          hover:bg-gray-100`
+                                    }
+                                    onClick={onClose}
+                                >
+                                    <img src={item.icon} alt={item.label} className="w-[27px] h-[27px] object-contain opacity-80" />
+                                    <span>{item.label}</span>
+                                </NavLink>
+
+                                {item.children && (
+                                    <div className="ml-14 mt-1 space-y-1">
+                                        {item.children.map(child => (
+                                            <NavLink
+                                                key={child.path}
+                                                to={child.path}
+                                                className={({ isActive }) =>
+                                                    `flex items-center gap-3 px-2 py-2 text-sm transition 
+          ${isActive ? "bg-gray-100 font-semibold text-black mr-2 rounded-[10px]" : "text-gray-600"} 
+          hover:bg-gray-100`
+                                                }
+                                                onClick={onClose}
+                                            >
+                                                {child.label}
+                                            </NavLink>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
                         ))}
                     </nav>
+
                 </div>
             </aside>
 
