@@ -13,7 +13,15 @@ export const MENU = [
     { label: "Patients", path: "/patients", icon: pt },
     { label: "Appointments", path: "/appointments", icon: ap },
     { label: "Specialities", path: "/specialities", icon: spc },
-    { label: "Products", path: "/products", icon: pd },
+    {
+        label: "Products",
+        path: "/products",
+        icon: pd,
+        children: [
+            { label: "Product List", path: "/products/list" },
+            { label: "Add Products", path: "/products/add" },
+        ],
+    },
     { label: "Coupons", path: "/coupons", icon: coup },
     { label: "Wallet", path: "/wallet", icon: ap },
     { label: "Refund", path: "/refud", icon: ap },
